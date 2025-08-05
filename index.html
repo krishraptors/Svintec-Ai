@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svintec Private Limited - Next-Gen IT Consulting & Digital Transformation</title>
+    <meta name="description" content="Leading IT consulting firm specializing in digital transformation, AI/ML, cloud solutions, and enterprise technology. Transform your business with Svintec.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(45deg, #00d4ff, #7c3aed);
+            --secondary-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            --accent-color: #00d4ff;
+            --purple-accent: #7c3aed;
+            --orange-accent: #f59e0b;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--secondary-gradient);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 800;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .hamburger:hover {
+            background: var(--glass-bg);
+        }
+
+        .hamburger:hover span {
+            background: linear-gradient(45deg, var(--purple-accent), var(--orange-accent));
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: min(400px, 90vw);
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(124, 58, 237, 0.1) 100%);
+            backdrop-filter: blur(30px);
+            padding: 100px 40px 40px;
+            z-index: 999;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-left: 1px solid var(--glass-border);
+            overflow-y: auto;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-items li {
+            margin: 25px 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .side-menu.active .menu-items li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .menu-items li:nth-child(1) { transition-delay: 0.1s; }
+        .menu-items li:nth-child(2) { transition-delay: 0.15s; }
+        .menu-items li:nth-child(3) { transition-delay: 0.2s; }
+        .menu-items li:nth-child(4) { transition-delay: 0.25s; }
+        .menu-items li:nth-child(5) { transition-delay: 0.3s; }
+        .menu-items li:nth-child(6) { transition-delay: 0.35s; }
+
+        .menu-items a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-items a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            color: var(--accent-color);
+            transform: translateX(10px);
+        }
+
+        .menu-items a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 5% 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(0.5deg); }
+            66% { transform: translateY(15px) rotate(-0.5deg); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #ffffff, var(--accent-color), var(--purple-accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
+            background: linear-gradient(45deg, var(--purple-accent), var(--orange-accent));
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--glass-border);
+            box-shadow: none;
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--glass-bg);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: var(--primary-gradient);
+        }
+
+        .tech-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 5%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.02) 0%, rgba(124, 58, 237, 0.02) 100%);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .about-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            padding: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Technology Infrastructure Images */
+        .tech-infrastructure {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%237c3aed;stop-opacity:0.1"/></linearGradient></defs><rect width="400" height="300" fill="url(%23bg)"/><g fill="%2300d4ff" opacity="0.6"><circle cx="80" cy="80" r="3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="150" cy="60" r="2"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/></circle><circle cx="220" cy="90" r="2.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" repeatCount="indefinite"/></circle><circle cx="320" cy="70" r="3"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/></circle></g><g stroke="%237c3aed" stroke-width="1" fill="none" opacity="0.4"><path d="M80,80 L150,60 L220,90 L320,70"><animate attributeName="stroke-dasharray" values="0,1000;1000,0;0,1000" dur="4s" repeatCount="indefinite"/></path></g><g fill="%23ffffff" opacity="0.8"><rect x="60" y="200" width="40" height="60" rx="5"/><rect x="120" y="180" width="40" height="80" rx="5"/><rect x="180" y="190" width="40" height="70" rx="5"/><rect x="240" y="170" width="40" height="90" rx="5"/><rect x="300" y="185" width="40" height="75" rx="5"/></g><text x="200" y="150" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="14" opacity="0.6">Data Infrastructure</text></svg>') center/cover;
+            border-radius: 20px;
+        }
+
+        .service-visual {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .digital-transformation-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="dtBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23f59e0b;stop-opacity:0.1"/></linearGradient></defs><rect width="300" height="200" fill="url(%23dtBg)"/><g fill="%2300d4ff" opacity="0.7"><rect x="50" y="60" width="20" height="20" rx="3"><animateTransform attributeName="transform" type="rotate" values="0 60 70;360 60 70" dur="3s" repeatCount="indefinite"/></rect><rect x="230" y="120" width="15" height="15" rx="2"><animateTransform attributeName="transform" type="rotate" values="0 237.5 127.5;-360 237.5 127.5" dur="4s" repeatCount="indefinite"/></rect></g><g stroke="%237c3aed" stroke-width="2" fill="none" opacity="0.6"><path d="M150,50 Q200,100 150,150"><animate attributeName="stroke-dasharray" values="0,200;200,0;0,200" dur="3s" repeatCount="indefinite"/></path></g><text x="150" y="30" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.8">Digital Transform</text></svg>') center/cover;
+        }
+
+        .cloud-services-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="cloudBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.15"/><stop offset="100%" style="stop-color:%237c3aed;stop-opacity:0.05"/></linearGradient></defs><rect width="300" height="200" fill="url(%23cloudBg)"/><g fill="%2300d4ff" opacity="0.6"><ellipse cx="80" cy="80" rx="25" ry="15"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/></ellipse><ellipse cx="150" cy="60" rx="30" ry="18"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/></ellipse><ellipse cx="220" cy="90" rx="20" ry="12"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.5s" repeatCount="indefinite"/></ellipse></g><g fill="%23ffffff" opacity="0.4"><rect x="130" y="130" width="40" height="30" rx="3"/><rect x="140" y="120" width="20" height="10" rx="2"/></g><text x="150" y="180" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.7">Cloud Infrastructure</text></svg>') center/cover;
+        }
+
+        .ai-ml-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%237c3aed;stop-opacity:0.15"/><stop offset="100%" style="stop-color:%23f59e0b;stop-opacity:0.05"/></linearGradient></defs><rect width="300" height="200" fill="url(%23aiBg)"/><g fill="%237c3aed" opacity="0.7"><circle cx="150" cy="100" r="30" fill="none" stroke="%237c3aed" stroke-width="2"><animate attributeName="r" values="30;35;30" dur="2s" repeatCount="indefinite"/></circle><circle cx="150" cy="100" r="3"><animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/></circle></g><g fill="%2300d4ff" opacity="0.6"><circle cx="120" cy="70" r="2"/><circle cx="180" cy="70" r="2"/><circle cx="120" cy="130" r="2"/><circle cx="180" cy="130" r="2"/></g><text x="150" y="40" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.8">AI Neural Network</text></svg>') center/cover;
+        }
+
+        .cybersecurity-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="secBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23f59e0b;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0.1"/></linearGradient></defs><rect width="300" height="200" fill="url(%23secBg)"/><g fill="%23f59e0b" opacity="0.7"><path d="M150,60 L130,80 L130,120 Q130,140 150,140 Q170,140 170,120 L170,80 Z"><animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/></path><rect x="140" y="90" width="20" height="25" rx="3" fill="%23ffffff" opacity="0.8"/></g><g stroke="%2300d4ff" stroke-width="1" fill="none" opacity="0.5"><circle cx="150" cy="100" r="60"><animate attributeName="stroke-dasharray" values="0,377;377,0;0,377" dur="4s" repeatCount="indefinite"/></circle></g><text x="150" y="170" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.7">Security Shield</text></svg>') center/cover;
+        }
+
+        .data-analytics-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="dataBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%237c3aed;stop-opacity:0.1"/></linearGradient></defs><rect width="300" height="200" fill="url(%23dataBg)"/><g fill="%2300d4ff" opacity="0.6"><rect x="60" y="120" width="15" height="40"><animate attributeName="height" values="40;60;40" dur="2s" repeatCount="indefinite"/></rect><rect x="90" y="100" width="15" height="60"><animate attributeName="height" values="60;80;60" dur="2.5s" repeatCount="indefinite"/></rect><rect x="120" y="90" width="15" height="70"><animate attributeName="height" values="70;90;70" dur="2.2s" repeatCount="indefinite"/></rect><rect x="150" y="80" width="15" height="80"><animate attributeName="height" values="80;100;80" dur="2.8s" repeatCount="indefinite"/></rect><rect x="180" y="110" width="15" height="50"><animate attributeName="height" values="50;70;50" dur="2.3s" repeatCount="indefinite"/></rect></g><text x="150" y="40" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.8">Data Analytics</text></svg>') center/cover;
+        }
+
+        .enterprise-apps-bg {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="appBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%237c3aed;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0.1"/></linearGradient></defs><rect width="300" height="200" fill="url(%23appBg)"/><g fill="%237c3aed" opacity="0.6"><rect x="80" y="60" width="40" height="50" rx="5"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/></rect><rect x="140" y="70" width="40" height="40" rx="5"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/></rect><rect x="200" y="65" width="40" height="45" rx="5"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.2s" repeatCount="indefinite"/></rect></g><g stroke="%2300d4ff" stroke-width="1" fill="none" opacity="0.5"><path d="M120,85 L140,85 M180,85 L200,85"><animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="3s" repeatCount="indefinite"/></path></g><text x="150" y="140" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="12" opacity="0.7">Enterprise Apps</text></svg>') center/cover;
+        }
+
+        /* Hero Technology Grid */
+        .hero-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 60px auto 0;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .hero-tech-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: left 0.5s ease;
+        }
+
+        .hero-tech-card:hover::before {
+            left: 0;
+        }
+
+        .hero-tech-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .tech-logo {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 10px;
+            background: var(--primary-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .tech-name-hero {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Career Section Images */
+        .careers-hero {
+            width: 100%;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300"><defs><linearGradient id="careerBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%237c3aed;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23f59e0b;stop-opacity:0.1"/></linearGradient></defs><rect width="600" height="300" fill="url(%23careerBg)"/><g fill="%237c3aed" opacity="0.6"><circle cx="150" cy="100" r="25"/><circle cx="300" cy="80" r="30"/><circle cx="450" cy="120" r="28"/></g><g fill="%23ffffff" opacity="0.8"><rect x="100" y="200" width="400" height="60" rx="10"/><rect x="120" y="220" width="60" height="20" rx="3"/><rect x="200" y="220" width="80" height="20" rx="3"/><rect x="300" y="220" width="70" height="20" rx="3"/><rect x="390" y="220" width="90" height="20" rx="3"/></g><text x="300" y="50" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="18" opacity="0.8">Join Our Team</text></svg>') center/cover;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Statistics Visualization */
+        .stats-visual {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"><defs><linearGradient id="statsBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%237c3aed;stop-opacity:0.1"/></linearGradient></defs><rect width="800" height="200" fill="url(%23statsBg)"/><g fill="%2300d4ff" opacity="0.7"><rect x="100" y="120" width="30" height="60"><animate attributeName="height" values="60;80;60" dur="2s" repeatCount="indefinite"/></rect><rect x="200" y="100" width="30" height="80"><animate attributeName="height" values="80;100;80" dur="2.5s" repeatCount="indefinite"/></rect><rect x="300" y="80" width="30" height="100"><animate attributeName="height" values="100;120;100" dur="2.2s" repeatCount="indefinite"/></rect><rect x="400" y="60" width="30" height="120"><animate attributeName="height" values="120;140;120" dur="2.8s" repeatCount="indefinite"/></rect><rect x="500" y="90" width="30" height="90"><animate attributeName="height" values="90;110;90" dur="2.3s" repeatCount="indefinite"/></rect><rect x="600" y="110" width="30" height="70"><animate attributeName="height" values="70;90;70" dur="2.6s" repeatCount="indefinite"/></rect></g><text x="400" y="40" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="16" opacity="0.8">Global Performance Metrics</text></svg>') center/cover;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .value-card {
+            padding: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .value-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 5%;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 5px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Careers Section */
+        .careers {
+            padding: 120px 5%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.02) 0%, rgba(245, 158, 11, 0.02) 100%);
+        }
+
+        .careers-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .careers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .careers-intro h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .careers-intro p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .benefit-card {
+            padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 20px;
+        }
+
+        .benefit-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .job-openings {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .job-openings h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .job-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .job-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .job-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .job-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .apply-btn {
+            padding: 10px 20px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            text-align: center;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-item .stat-number {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-item .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 5% 30px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-info, .footer-links {
+            list-style: none;
+        }
+
+        .contact-info li, .footer-links li {
+            margin: 12px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 4%;
+            }
+
+            .side-menu {
+                padding: 80px 30px 30px;
+            }
+
+            .hero {
+                padding: 100px 4% 60px;
+                min-height: 90vh;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .tech-showcase {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 15px;
+            }
+
+            .about, .services, .careers {
+                padding: 80px 4%;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .job-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .job-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .footer {
+                padding: 60px 4% 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-card, .value-card, .benefit-card {
+                padding: 25px;
+            }
+
+            .job-openings {
+                padding: 30px 20px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--purple-accent), var(--orange-accent));
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Svintec</div>
+            <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="menu-items">
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#services" onclick="closeMenu()">Services</a></li>
+            <li><a href="#careers" onclick="closeMenu()">Careers</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <li><a href="#" onclick="closeMenu()">Investor Relations</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge loading">
+                <span>🚀</span>
+                Trusted by 500+ Global Enterprises
+            </div>
+            <h1 class="loading">Transforming Digital Futures</h1>
+            <p class="hero-subtitle loading">
+                Leading the next generation of enterprise technology with innovative solutions, cutting-edge AI, and digital transformation expertise that drives unprecedented business growth.
+            </p>
+            <p class="hero-description loading">
+                From Fortune 500 companies to emerging startups, we deliver scalable technology solutions that accelerate digital transformation, optimize operations, and create competitive advantages in the modern marketplace.
+            </p>
+            <div class="hero-buttons loading">
+                <a href="#contact" class="cta-button">
+                    Start Your Journey
+                    <span>→</span>
+                </a>
+                <a href="#about" class="cta-button secondary">
+                    Discover More
+                    <span>↓</span>
+                </a>
+            </div>
+            <div class="hero-tech-grid">
+                <div class="hero-tech-card">
+                    <div class="tech-logo">☁️</div>
+                    <div class="tech-name-hero">AWS</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">⚡</div>
+                    <div class="tech-name-hero">Azure</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">🧠</div>
+                    <div class="tech-name-hero">AI/ML</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">🐳</div>
+                    <div class="tech-name-hero">Docker</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">☸️</div>
+                    <div class="tech-name-hero">Kubernetes</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">🔒</div>
+                    <div class="tech-name-hero">Security</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">📊</div>
+                    <div class="tech-name-hero">Analytics</div>
+                </div>
+                <div class="hero-tech-card">
+                    <div class="tech-logo">🌐</div>
+                    <div class="tech-name-hero">IoT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about scroll-animate" id="about">
+        <div class="about-container">
+            <div class="section-header">
+                <div class="section-badge">About Svintec</div>
+                <h2 class="section-title">Pioneering Excellence in Technology</h2>
+                <p class="section-subtitle">
+                    With over two decades of innovation, we've established ourselves as a global leader in enterprise technology solutions, serving clients across 40+ countries.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Our Legacy of Innovation</h3>
+                    <p>
+                        Founded in 2003, Svintec Private Limited has grown from a visionary startup to a multinational technology powerhouse. We specialize in delivering comprehensive digital transformation solutions that empower businesses to thrive in the digital age.
+                    </p>
+                    <p>
+                        Our expertise spans across cloud computing, artificial intelligence, machine learning, cybersecurity, enterprise applications, and data analytics. We've successfully delivered over 2,500 projects, ranging from complex enterprise integrations to cutting-edge AI implementations.
+                    </p>
+                    <p>
+                        With offices in major technology hubs including Bangalore, Mumbai, Singapore, London, and New York, we maintain a global presence while delivering localized expertise. Our team of 5,000+ certified professionals brings deep industry knowledge and technical excellence to every engagement.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">40+</div>
+                            <div class="stat-label">Countries Served</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2.5K+</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">5K+</div>
+                            <div class="stat-label">Expert Professionals</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="tech-infrastructure"></div>
+                </div>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h4>Innovation First</h4>
+                    <p>We continuously invest in emerging technologies and R&D, ensuring our clients stay ahead of the technological curve with cutting-edge solutions that drive competitive advantages.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h4>Client Partnership</h4>
+                    <p>We believe in building long-term partnerships with our clients, understanding their unique challenges and delivering tailored solutions that exceed expectations and drive measurable business outcomes.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h4>Excellence Driven</h4>
+                    <p>Our commitment to quality is unwavering. We maintain the highest standards in delivery, security, and performance, backed by industry certifications and best practices.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h4>Global Reach</h4>
+                    <p>With a presence across multiple continents, we combine global expertise with local insights to deliver solutions that are both world-class and culturally relevant.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h4>Agile Delivery</h4>
+                    <p>Our agile methodologies ensure rapid deployment and continuous improvement, enabling businesses to adapt quickly to market changes and opportunities.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h4>Security Focus</h4>
+                    <p>Security is embedded in everything we do. Our comprehensive security frameworks protect client data and ensure compliance with global regulations and standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services scroll-animate" id="services">
+        <div class="services-container">
+            <div class="section-header">
+                <div class="section-badge">Our Services</div>
+                <h2 class="section-title">Comprehensive Technology Solutions</h2>
+                <p class="section-subtitle">
+                    From strategy to implementation, we deliver end-to-end technology solutions that transform businesses and accelerate growth.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-visual digital-transformation-bg"></div>
+                    <div class="service-icon">🚀</div>
+                    <h3>Digital Transformation</h3>
+                    <p>Accelerate your digital journey with comprehensive transformation strategies that reimagine business processes and customer experiences.</p>
+                    <ul class="service-features">
+                        <li>Digital Strategy & Roadmap</li>
+                        <li>Process Automation</li>
+                        <li>Legacy System Modernization</li>
+                        <li>Customer Experience Design</li>
+                        <li>Change Management</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-visual cloud-services-bg"></div>
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Migrate, optimize, and scale your infrastructure with our comprehensive cloud services across AWS, Azure, and Google Cloud platforms.</p>
+                    <ul class="service-features">
+                        <li>Cloud Migration & Strategy</li>
+                        <li>Multi-Cloud Architecture</li>
+                        <li>Container Orchestration</li>
+                        <li>Serverless Computing</li>
+                        <li>Cloud Security & Compliance</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-visual ai-ml-bg"></div>
+                    <div class="service-icon">🧠</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Harness the power of artificial intelligence with custom ML models, predictive analytics, and intelligent automation solutions.</p>
+                    <ul class="service-features">
+                        <li>Custom ML Model Development</li>
+                        <li>Natural Language Processing</li>
+                        <li>Computer Vision Solutions</li>
+                        <li>Predictive Analytics</li>
+                        <li>AI-Powered Automation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-visual cybersecurity-bg"></div>
+                    <div class="service-icon">🔒</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Protect your digital assets with comprehensive security solutions including threat detection, compliance, and risk management.</p>
+                    <ul class="service-features">
+                        <li>Security Assessment & Auditing</li>
+                        <li>Threat Detection & Response</li>
+                        <li>Identity & Access Management</li>
+                        <li>Compliance Management</li>
+                        <li>Security Training & Awareness</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-visual data-analytics-bg"></div>
+                    <div class="service-icon">📊</div>
+                    <h3>Data Analytics</h3>
+                    <p>Transform raw data into actionable insights with advanced analytics, business intelligence, and data visualization solutions.</p>
+                    <ul class="service-features">
+                        <li>Data Warehouse & Lake Solutions</li>
+                        <li>Business Intelligence Dashboards</li>
+                        <li>Real-time Analytics</li>
+                        <li>Data Governance & Quality</li>
+                        <li>Advanced Visualization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-visual enterprise-apps-bg"></div>
+                    <div class="service-icon">⚡</div>
+                    <h3>Enterprise Applications</h3>
+                    <p>Build scalable, robust enterprise applications with modern architecture, microservices, and cloud-native technologies.</p>
+                    <ul class="service-features">
+                        <li>Custom Application Development</li>
+                        <li>ERP Implementation & Customization</li>
+                        <li>Microservices Architecture</li>
+                        <li>API Development & Management</li>
+                        <li>Mobile Application Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers scroll-animate" id="careers">
+        <div class="careers-container">
+            <div class="section-header">
+                <div class="section-badge">Join Our Team</div>
+                <h2 class="section-title">Shape the Future of Technology</h2>
+                <p class="section-subtitle">
+                    Be part of a dynamic, innovative team that's transforming the technology landscape and creating solutions for tomorrow's challenges.
+                </p>
+            </div>
+
+            <div class="careers-hero"></div>
+            
+            <div class="careers-intro">
+                <h3>Why Choose Svintec?</h3>
+                <p>
+                    At Svintec, we believe our people are our greatest asset. We foster a culture of innovation, continuous learning, and professional growth. Our diverse, inclusive environment encourages creativity and collaboration, enabling our team members to reach their full potential while working on cutting-edge projects that make a real impact.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <h4>Continuous Learning</h4>
+                    <p>Access to cutting-edge training, certifications, and conferences to stay ahead in technology trends.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h4>Competitive Compensation</h4>
+                    <p>Industry-leading salaries, performance bonuses, and comprehensive benefits packages.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌍</div>
+                    <h4>Global Opportunities</h4>
+                    <p>Work on international projects with clients across 40+ countries and diverse industries.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚖️</div>
+                    <h4>Work-Life Balance</h4>
+                    <p>Flexible working arrangements, remote work options, and generous time-off policies.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏥</div>
+                    <h4>Health & Wellness</h4>
+                    <p>Comprehensive health insurance, wellness programs, and mental health support.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>Innovation Culture</h4>
+                    <p>20% innovation time, hackathons, and opportunities to work on breakthrough technologies.</p>
+                </div>
+            </div>
+
+            <div class="job-openings">
+                <h3>Current Openings</h3>
+                <div class="job-list">
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>Senior Cloud Architect</h4>
+                            <div class="job-meta">
+                                <span>📍 Bangalore, India</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Senior Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>AI/ML Engineer</h4>
+                            <div class="job-meta">
+                                <span>📍 Mumbai, India</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Mid Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>DevOps Engineer</h4>
+                            <div class="job-meta">
+                                <span>📍 Remote</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Mid Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>Cybersecurity Specialist</h4>
+                            <div class="job-meta">
+                                <span>📍 Singapore</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Senior Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>Full Stack Developer</h4>
+                            <div class="job-meta">
+                                <span>📍 London, UK</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Mid Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                    <div class="job-item">
+                        <div class="job-info">
+                            <h4>Data Scientist</h4>
+                            <div class="job-meta">
+                                <span>📍 New York, USA</span>
+                                <span>💼 Full-time</span>
+                                <span>⭐ Senior Level</span>
+                            </div>
+                        </div>
+                        <a href="#" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats scroll-animate">
+        <div class="stats-visual"></div>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-label">Global Clients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="5000">0</div>
+                <div class="stat-label">Expert Professionals</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="99">0</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Svintec Private Limited</h3>
+                    <p>
+                        Leading the future of enterprise technology with innovative solutions and exceptional service. Partner with us to transform your digital landscape and achieve unprecedented growth.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/svintec" class="social-link" target="_blank" rel="noopener">
+                            📘
+                        </a>
+                        <a href="https://twitter.com/svintec" class="social-link" target="_blank" rel="noopener">
+                            🐦
+                        </a>
+                        <a href="https://www.facebook.com/svintec" class="social-link" target="_blank" rel="noopener">
+                            📘
+                        </a>
+                        <a href="https://www.instagram.com/svintec" class="social-link" target="_blank" rel="noopener">
+                            📷
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li>🏢 Headquarters: Bangalore, Karnataka, India</li>
+                        <li>📧 Email: hello@svintec.co</li>
+                        <li>📞 Phone: +91 80 4567 8900</li>
+                        <li>🌐 Website: www.svintec.co</li>
+                        <li>⏰ Business Hours: Mon-Fri, 9 AM - 6 PM IST</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Digital Transformation</a></li>
+                        <li><a href="#services">Cloud Solutions</a></li>
+                        <li><a href="#services">AI & Machine Learning</a></li>
+                        <li><a href="#services">Cybersecurity</a></li>
+                        <li><a href="#services">Data Analytics</a></li>
+                        <li><a href="#services">Enterprise Applications</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#">News & Events</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Svintec Private Limited. All rights reserved. | Innovating Tomorrow, Today. | ISO 27001:2013 Certified | CMMI Level 5</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Optimized JavaScript for better performance
+        
+        // Menu Toggle with improved animations
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            
+            const isActive = sideMenu.classList.contains('active');
+            
+            if (isActive) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        function openMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            
+            sideMenu.classList.add('active');
+            overlay.classList.add('active');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            
+            sideMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Smooth scrolling with offset for fixed navbar
+        function smoothScroll(target) {
+            const element = document.querySelector(target);
+            if (element) {
+                const offsetTop = element.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Enhanced smooth scrolling for all anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    if (target && target !== '#') {
+                        smoothScroll(target);
+                        closeMenu();
+                    }
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe scroll animations
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced stats animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        const duration = 2000; // 2 seconds
+                        const increment = target / (duration / 16); // 60fps
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                entry.target.textContent = target + (target === 99 ? '%' : '+');
+                                clearInterval(timer);
+                            } else {
+                                entry.target.textContent = Math.floor(current) + (target === 99 ? '%' : '+');
+                            }
+                        }, 16);
+                        
+                        entry.target.parentElement.classList.add('visible');
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            statNumbers.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+        }
+
+        // Enhanced navbar scroll effect
+        let lastScrollY = window.scrollY;
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.borderBottom = '1px solid rgba(0, 212, 255, 0.2)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            lastScrollY = currentScrollY;
+        }
+
+        // Throttled scroll handler for better performance
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(handleNavbarScroll);
+                ticking = true;
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            requestTick();
+        });
+
+        // Initialize animations and effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize stats animation
+            animateStats();
+            
+            // Add loading class to hero elements
+            setTimeout(() => {
+                document.querySelectorAll('.loading').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }, 100);
+
+            // Preload critical images
+            const criticalImages = [
+                // Add any critical image URLs here
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
+        // Enhanced service cards interaction
+        document.querySelectorAll('.service-card, .value-card, .benefit-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Enhanced job item interactions
+        document.querySelectorAll('.job-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Lazy loading for better performance
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        // Touch/swipe support for mobile menu
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && touchStartX > window.innerWidth - 100) {
+                    // Swipe left from right edge - open menu
+                    openMenu();
+                } else if (diff < 0) {
+                    // Swipe right - close menu
+                    closeMenu();
+                }
+            }
+        }
+
+        // Form validation and submission (if forms are added later)
+        function validateForm(form) {
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('error');
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+
+            return isValid;
+        }
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+                }, 0);
+            });
+        }
+
+        // Error handling for failed resources
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                // Handle image load errors
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Accessibility improvements
+        document.querySelectorAll('.cta-button, .apply-btn, .social-link').forEach(button => {
+            button.addEventListener('focus', function() {
+                this.style.outline = '2px solid #00d4ff';
+                this.style.outlineOffset = '2px';
+            });
+
+            button.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        });
+
+        // Dynamic year update
+        const currentYear = new Date().getFullYear();
+        document.querySelectorAll('.footer-bottom p').forEach(p => {
+            p.innerHTML = p.innerHTML.replace('2025', currentYear);
+        });
+
+        // Page visibility API for performance optimization
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Pause animations when page is not visible
+                document.querySelectorAll('.hero-bg').forEach(bg => {
+                    bg.style.animationPlayState = 'paused';
+                });
+            } else {
+                // Resume animations when page becomes visible
+                document.querySelectorAll('.hero-bg').forEach(bg => {
+                    bg.style.animationPlayState = 'running';
+                });
+            }
+        });
+
+        // Preconnect to external domains for faster loading
+        const preconnectDomains = [
+            '//fonts.googleapis.com',
+            '//fonts.gstatic.com'
+        ];
+
+        preconnectDomains.forEach(domain => {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = domain;
+            document.head.appendChild(link);
+        });
+
+        // Service worker registration for PWA capabilities (future enhancement)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Service worker can be registered here for offline capabilities
+                console.log('Service Worker support detected');
+            });
+        }
+
+        // Analytics and tracking placeholder
+        function trackEvent(eventName, eventData) {
+            // Placeholder for analytics tracking
+            console.log('Event tracked:', eventName, eventData);
+        }
+
+        // Track CTA button clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                trackEvent('CTA_Click', {
+                    button_text: this.textContent.trim(),
+                    page_section: this.closest('section')?.id || 'unknown'
+                });
+            });
+        });
+
+        // Track job application clicks
+        document.querySelectorAll('.apply-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const jobTitle = this.closest('.job-item').querySelector('h4').textContent;
+                trackEvent('Job_Application_Click', {
+                    job_title: jobTitle
+                });
+            });
+        });
+
+        // Enhanced error boundaries
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            // Could send to error tracking service
+        });
+
+        // Memory cleanup
+        window.addEventListener('beforeunload', function() {
+            // Clean up any intervals, timeouts, or event listeners if needed
+            observer.disconnect();
+        });
+    </script>
+</body>
+</html>
