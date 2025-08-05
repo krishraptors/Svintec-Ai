@@ -585,7 +585,6 @@
             font-weight: 500;
             color: var(--text-secondary);
         }
-
         /* Career Section Images */
         .careers-hero {
             width: 100%;
@@ -1159,63 +1158,113 @@
         }
 
         @media (max-width: 480px) {
-            .hero-subtitle {
-                font-size: 18px;
-            }
+    .navbar {
+        padding: 8px 2%;
+    }
 
-            .section-title {
-                font-size: 2rem;
-            }
+    .logo {
+        font-size: 22px;
+    }
 
-            .service-card, .value-card, .benefit-card {
-                padding: 25px;
-            }
+    .side-menu {
+        padding: 60px 10px 10px;
+        width: 100vw;
+    }
 
-            .job-openings {
-                padding: 30px 20px;
-            }
+    .hero {
+        padding: 60px 2% 30px;
+        min-height: 70vh;
+    }
 
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-        }
+    .hero-badge,
+    .hero h1,
+    .hero-subtitle,
+    .hero-description,
+    .hero-buttons {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
 
-        /* Loading Animation */
-        .loading {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
+    .hero-tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-width: 100%;
+    }
 
-        /* Scroll Animations */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    .about,
+    .services,
+    .careers {
+        padding: 40px 2%;
+    }
 
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .about-grid,
+    .services-grid,
+    .values-grid,
+    .benefits-grid,
+    .footer-content,
+    .stats-container {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+    .about-image {
+        height: 200px;
+    }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
+    .stat-card,
+    .service-card,
+    .value-card,
+    .benefit-card {
+        padding: 15px;
+        font-size: 14px;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-gradient);
-            border-radius: 4px;
-        }
+    .job-openings {
+        padding: 15px 5px;
+    }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, var(--purple-accent), var(--orange-accent));
-        }
+    .job-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .job-meta {
+        flex-direction: column;
+        gap: 3px;
+        font-size: 12px;
+    }
+
+    .footer {
+        padding: 30px 2% 10px;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .footer-section p,
+    .contact-info li,
+    .footer-links li {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        font-size: 12px;
+        padding-top: 10px;
+    }
+}
+
+/* ...existing code... */
     </style>
 </head>
 <body>
