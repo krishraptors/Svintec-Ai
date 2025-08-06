@@ -956,6 +956,47 @@
             font-weight: 600;
         }
 
+/* Mobile responsive for Contact Us container */
+@media (max-width: 768px) {
+    .contact-details > div {
+        flex-direction: column !important;
+        gap: 24px !important;
+        padding: 24px 8px !important;
+    }
+    .contact-details h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 6px !important;
+    }
+    .contact-details p {
+        font-size: 14px !important;
+        margin-bottom: 18px !important;
+    }
+    .contact-details form {
+        gap: 14px !important;
+    }
+    .contact-details input,
+    .contact-details select,
+    .contact-details textarea {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    .contact-details .cta-button {
+        font-size: 15px !important;
+        padding: 12px !important;
+    }
+    .contact-details img {
+        max-width: 100%;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,212,255,0.10) !important;
+        margin-top: 12px !important;
+    }
+}
+
+
+
+
+
+
         /* Footer */
         .footer {
             padding: 80px 5% 30px;
@@ -1182,12 +1223,63 @@
             .footer {
                 padding: 60px 4% 20px;
             }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
+/* 
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+}
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+} */
+ /* Adjust footer layout so Company container is just right of Services container */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+.footer-section {
+    background: rgba(255,255,255,0.02);
+    border-radius: 14px;
+    padding: 28px 22px 18px;
+    box-shadow: 0 2px 12px rgba(0,212,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+.footer-section h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    background: linear-gradient(45deg,#00d4ff,#7c3aed);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .footer-section {
+        padding: 18px 10px 10px;
+    }
+}
             .social-links {
                 justify-content: center;
             }
@@ -1775,44 +1867,36 @@
                     <p>
                         Leading the future of enterprise technology with innovative solutions and exceptional service. Partner with us to transform your digital landscape and achieve unprecedented growth.
                     </p>
-                    <!-- <div class="social-links">
-                        <a href="https://www.linkedin.com/company/svintec" class="social-link" target="_blank" rel="noopener">
-                            📘
-                        </a>
-                        <a href="https://twitter.com/svintec" class="social-link" target="_blank" rel="noopener">
-                            🐦
-                        </a>
-                        <a href="https://www.facebook.com/svintec" class="social-link" target="_blank" rel="noopener">
-                            📘
-                        </a>
-                        <a href="https://www.instagram.com/svintec" class="social-link" target="_blank" rel="noopener">
-                            📷
-                        </a>
-                    </div> -->
                 </div>
 
                 <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <ul class="contact-info">
-                        <li>🏢 Headquarters: Bangalore, Karnataka, India</li>
-                        <li>📧 Email: hello@svintec.co</li>
-                        <li>📞 Phone: +91 80 4567 8900</li>
-                        <li>🌐 Website: www.svintec.co</li>
-                        <li>⏰ Business Hours: Mon-Fri, 9 AM - 6 PM IST</li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services">Digital Transformation</a></li>
-                        <li><a href="#services">Cloud Solutions</a></li>
-                        <li><a href="#services">AI & Machine Learning</a></li>
-                        <li><a href="#services">Cybersecurity</a></li>
-                        <li><a href="#services">Data Analytics</a></li>
-                        <li><a href="#services">Enterprise Applications</a></li>
-                    </ul>
-                </div>
+    <h3>Contact Information</h3>
+    <ul class="contact-info">
+        <li>🏢 Headquarters: Bangalore, Karnataka, India</li>
+        <li>📧 Email: hello@svintec.co</li>
+        <li>📞 Phone: +91 9205810237</li>
+        <li>🌐 Website: www.svintec.co</li>
+        <li>⏰ Business Hours: Mon-Fri, 9 AM - 6 PM IST</li>
+    </ul>
+    <!-- Google Map Location: Louis Philippe - HSR Layout -->
+    <div style="margin-top:20px; border-radius:12px; overflow:hidden;">
+        <iframe
+            src="https://www.google.com/maps?q=Svintec+Private+Limited+4th+Floor+Louis+Philippe+-+HSR+Layout,+417,+27th+Main+Rd,+1st+Sector,+HSR+Layout,+Bengaluru,+Karnataka+560102&hl=en&z=16&output=embed"
+            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
+                            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">Digital Transformation</a></li>
+                    <li><a href="#services">Cloud Solutions</a></li>
+                    <li><a href="#services">AI & Machine Learning</a></li>
+                    <li><a href="#services">Cybersecurity</a></li>
+                    <li><a href="#services">Data Analytics</a></li>
+                    <li><a href="#services">Enterprise Applications</a></li>
+                </ul>
+            </div>
 
                 <div class="footer-section">
                     <h3>Company</h3>
